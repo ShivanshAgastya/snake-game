@@ -4,7 +4,7 @@ const Oversound = new Audio('gameover.mp3');
 const moveSound = new Audio('move.mp3');
 const musicsound = new Audio('music.mp3');
 let isGameOver = false;
-let speed = 4;
+let speed = 5;
 let score = 0;
 let isPaused = false;
 let lastPaintTime = 0;
@@ -20,20 +20,20 @@ setInterval(() => {
         let a = 2, b = 43, c = 2, d = 16;
         poison = {x: Math.round(a + (b-a)* Math.random()), y: Math.round(c + (d-c)* Math.random())}
     }
-}, 5000);
+}, 6000);
 setInterval(() => {
     if(!isGameOver && !isPaused && poison2 !== null){
         let a = 2, b = 43, c = 2, d = 16;
         poison2 = {x: Math.round(a + (b-a)* Math.random()), y: Math.round(c + (d-c)* Math.random())}
     }
-}, 5000);
+}, 6000);
 
 setInterval(() => {
     if(!isGameOver && !isPaused && poison3 !== null){
         let a = 2, b = 43, c = 2, d = 16;
         poison3 = {x: Math.round(a + (b-a)* Math.random()), y: Math.round(c + (d-c)* Math.random())}
     }
-}, 5000);
+}, 6000);
 
 
 function main(ctime) {
@@ -53,16 +53,10 @@ function main(ctime) {
 function iscollide(snake){
     for(let i = 1; i< snakeArr.length; i++){
         if(snake[i].x ===snake[0].x && snake[i].y === snake[0].y){
+            
             return true;
         } 
-        if(snakeArr[0].y === poison.y && snakeArr[0].x === poison.x){
-            let a = 2;
-            let b = 43;
-            let c = 2;
-            let d = 16;
-            poison = {x: Math.round(a + (b-a)* Math.random()), y: Math.round(c + (d-c)* Math.random())}
-            return true;
-        }
+        
     }
     return false;
 }
@@ -73,14 +67,17 @@ function gameEngine(){
         isGameOver = true;
         musicsound.pause();
         Oversound.play();
+        score = 0;
         SnakeVelocity = {x: 0, y: 0};
 
         setTimeout(() => {
+            score = 0;
+            scorebox.innerHTML = "SCORE : " + score;
             alert("Game over , khel khtm press any key to restart!");
             snakeArr = [{x: 13, y: 15}];
             musicsound.play();
-            score = 0;
-            speed = 4;
+            
+            speed = 5;
             isGameOver = false;
         }, 100);
     
@@ -127,11 +124,13 @@ function gameEngine(){
             SnakeVelocity = {x: 0, y: 0};
 
         setTimeout(() => {
+            score = 0;
+            scorebox.innerHTML = "SCORE : " + score;
             alert("Game over , khel khtm press any key to restart!");
             snakeArr = [{x: 13, y: 15}];
             musicsound.play();
-            score = 0;
-            speed = 4;
+            
+            speed = 5;
             isGameOver = false;
         }, 100);
             
@@ -148,11 +147,13 @@ function gameEngine(){
             SnakeVelocity = {x: 0, y: 0};
 
         setTimeout(() => {
+            score = 0;
+            scorebox.innerHTML = "SCORE : " + score;
             alert("Game over , khel khtm press any key to restart!");
             snakeArr = [{x: 13, y: 15}];
             musicsound.play();
-            score = 0;
-            speed = 4;
+            
+            speed = 5;
             isGameOver = false;
             poison2 = null;
             poison3 = null;
@@ -172,11 +173,12 @@ function gameEngine(){
             SnakeVelocity = {x: 0, y: 0};
 
         setTimeout(() => {
+            score = 0;
+            scorebox.innerHTML = "SCORE : " + score;
             alert("Game over , khel khtm press any key to restart!");
             snakeArr = [{x: 13, y: 15}];
             musicsound.play();
-            score = 0;
-            speed = 4;
+            speed = 5;
             isGameOver = false;
             poison2 = null;
             poison3 = null;
@@ -252,29 +254,34 @@ window .addEventListener('keydown', e=>{
     if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)){
         document.getElementById('startText').style.display = "none";
     }
-    SnakeVelocity = { x: 0, y: 1}
+    
     moveSound.play();
     switch (e.key) {
 
         case "ArrowUp":
             console.log("ArrowUp");
-            SnakeVelocity.x = 0;
-            SnakeVelocity.y = -1;
+            if(SnakeVelocity.y !== 1){  
+                SnakeVelocity = {x: 0, y: -1};
+            }
             break;
         case "ArrowDown":
             console.log("ArrowDown");
-            SnakeVelocity.x = 0;
-            SnakeVelocity.y = 1;
+            if(SnakeVelocity.y !== -1){ 
+                SnakeVelocity = {x: 0, y: 1};
+            }
             break;
         case "ArrowLeft":
             console.log("ArrowLeft");
-            SnakeVelocity.x = -1;
-            SnakeVelocity.y = 0;
+            if(SnakeVelocity.x !== 1){  
+                SnakeVelocity = {x: -1, y: 0};
+            }
             break;
         case "ArrowRight":
             console.log("ArrowRight");
-            SnakeVelocity.x = 1;
-            SnakeVelocity.y = 0;
+            if(SnakeVelocity.x !== -1){  
+                SnakeVelocity = {x: 1, y: 0};
+            }
+            
             break;
     }
 
