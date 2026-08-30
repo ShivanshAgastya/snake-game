@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.body{
+    background: url("../bg.jpg");
+    min-height: 100vh;
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   
+    overflow: hidden;
+    height: 100%;
+}
+
+#board{
+    background: linear-gradient(rgb(221, 0, 255), blue);
+    width: 150vmin;
+    height: 60vmin;
+    border: 6px solid;
+    border-image: linear-gradient(45deg, rgb(238, 2, 255), aqua) 1;
+    filter: drop-shadow(0 0 2px rgb(242, 2, 246)) drop-shadow(0 0 2px aqua);
+    display: grid;
+    grid-template-rows: repeat(18, 1fr);
+    grid-template-columns: repeat(45, 1fr);
+    background: rgba(0, 0, 0, 0.05) !important;
+    margin-top: 200px;   
+}
+
+.poisonfood{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-shadow:
+        0 0 2px white,
+        0 0 6px red,
+        0 0 14px red,
+        0 0 24px darkred;
+}
+
+.head{ 
+    background-image: url("../snakehead.png");
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    filter: 
+        drop-shadow(0 0 2px #12dc12b3)
+        drop-shadow(0 0 5px darkgreen)
+        drop-shadow(0 0 10px darkgreen);
+}
+
+.snake{
+    background-image: url("../snakebody.png");
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    filter: 
+        drop-shadow(0 0 1px #0f0)
+        drop-shadow(0 0 1px darkgreen)
+        drop-shadow(0 0 1px darkgreen);
+}
+
+.food{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-shadow:
+        0 0 2px white,
+        0 0 5px yellow,
+        0 0 10px orange,
+        0 0 18px orange;
+}
+
+.snake {
+    animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.75);
+        opacity: 0.4;
+    }
+    to {
+        transform: scale(0.75);
+        opacity: 1;
+    }
+}
+
+#scorebox{
+    position: absolute;
+    font-family: "Rock Salt", cursive;
+    top: 70px;
+    right: 1180px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px rgb(208, 0, 255),
+        0 0 30px rgb(199, 0, 221),
+        0 0 60px rgb(248, 36, 255);
+
+}
+
+#startText{
+    position: absolute;
+    font-family: "Rock Salt", cursive;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4vmin;
+    font-weight: bold;
+    text-shadow: 0 0 7px white, 0 0 15px rgb(0, 242, 255);
+    z-index: 10;
+    pointer-events: none;
+}
+
+
+
