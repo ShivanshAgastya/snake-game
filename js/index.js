@@ -68,6 +68,8 @@ function gameEngine(){
         musicsound.pause();
         Oversound.play();
         score = 0;
+        poison2 = null; 
+        poison3 = null; 
         SnakeVelocity = {x: 0, y: 0};
 
         setTimeout(() => {
